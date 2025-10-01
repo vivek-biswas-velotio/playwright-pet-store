@@ -1,0 +1,164 @@
+{
+  "categories": [
+    { "id": 1, "name": "Dogs" },
+    { "id": 2, "name": "Cats" },
+    { "id": 3, "name": "Birds" },
+    { "id": 4, "name": "Fish" },
+    { "id": 5, "name": "Reptiles" }
+  ],
+  "tags": [
+    { "id": 1, "name": "friendly" },
+    { "id": 2, "name": "playful" },
+    { "id": 3, "name": "calm" },
+    { "id": 4, "name": "energetic" },
+    { "id": 5, "name": "trained" },
+    { "id": 6, "name": "vaccinated" },
+    { "id": 7, "name": "neutered" },
+    { "id": 8, "name": "house-trained" }
+  ],
+  "samplePets": [
+    {
+      "name": "Buddy",
+      "photoUrls": [
+        "https://example.com/photos/buddy1.jpg",
+        "https://example.com/photos/buddy2.jpg"
+      ],
+      "category": { "id": 1, "name": "Dogs" },
+      "tags": [
+        { "id": 1, "name": "friendly" },
+        { "id": 5, "name": "trained" }
+      ],
+      "status": "available"
+    },
+    {
+      "name": "Whiskers",
+      "photoUrls": [
+        "https://example.com/photos/whiskers1.jpg"
+      ],
+      "category": { "id": 2, "name": "Cats" },
+      "tags": [
+        { "id": 3, "name": "calm" },
+        { "id": 6, "name": "vaccinated" }
+      ],
+      "status": "available"
+    },
+    {
+      "name": "Charlie",
+      "photoUrls": [
+        "https://example.com/photos/charlie1.jpg",
+        "https://example.com/photos/charlie2.jpg",
+        "https://example.com/photos/charlie3.jpg"
+      ],
+      "category": { "id": 3, "name": "Birds" },
+      "tags": [
+        { "id": 2, "name": "playful" },
+        { "id": 4, "name": "energetic" }
+      ],
+      "status": "pending"
+    }
+  ],
+  "sampleUsers": [
+    {
+      "username": "john_doe",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "password": "password123",
+      "phone": "+1-555-0123",
+      "userStatus": 1
+    },
+    {
+      "username": "jane_smith",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "password": "securepass456",
+      "phone": "+1-555-0456",
+      "userStatus": 1
+    },
+    {
+      "username": "pet_lover",
+      "firstName": "Pet",
+      "lastName": "Lover",
+      "email": "pet.lover@example.com",
+      "password": "ilovepets789",
+      "phone": "+1-555-0789",
+      "userStatus": 1
+    }
+  ],
+  "testScenarios": {
+    "validPetStatuses": ["available", "pending", "sold"],
+    "validOrderStatuses": ["placed", "approved", "delivered"],
+    "validUserStatuses": [0, 1, 2, 3],
+    "invalidData": {
+      "pets": {
+        "emptyName": {
+          "name": "",
+          "photoUrls": ["https://example.com/photo.jpg"]
+        },
+        "missingPhotoUrls": {
+          "name": "TestPet"
+        },
+        "invalidStatus": {
+          "name": "TestPet",
+          "photoUrls": ["https://example.com/photo.jpg"],
+          "status": "invalid_status"
+        }
+      },
+      "users": {
+        "emptyUsername": {
+          "username": "",
+          "email": "test@example.com"
+        },
+        "invalidEmail": {
+          "username": "testuser",
+          "email": "invalid-email-format"
+        }
+      },
+      "orders": {
+        "negativePetId": {
+          "petId": -1,
+          "quantity": 1
+        },
+        "zeroQuantity": {
+          "petId": 1,
+          "quantity": 0
+        }
+      }
+    },
+    "boundaryValues": {
+      "maxStringLength": 1000,
+      "minPositiveInteger": 1,
+      "maxTestInteger": 999999,
+      "specialCharacters": "!@#$%^&*()_+-=[]{}|;':\",./<>?"
+    }
+  },
+  "apiEndpoints": {
+    "pet": {
+      "create": "/pet",
+      "update": "/pet",
+      "findByStatus": "/pet/findByStatus",
+      "findByTags": "/pet/findByTags",
+      "getById": "/pet/{petId}",
+      "updateWithForm": "/pet/{petId}",
+      "delete": "/pet/{petId}",
+      "uploadImage": "/pet/{petId}/uploadImage"
+    },
+    "store": {
+      "inventory": "/store/inventory",
+      "placeOrder": "/store/order",
+      "getOrder": "/store/order/{orderId}",
+      "deleteOrder": "/store/order/{orderId}"
+    },
+    "user": {
+      "create": "/user",
+      "createWithArray": "/user/createWithArray",
+      "createWithList": "/user/createWithList",
+      "login": "/user/login",
+      "logout": "/user/logout",
+      "getByUsername": "/user/{username}",
+      "update": "/user/{username}",
+      "delete": "/user/{username}"
+    }
+  }
+}
